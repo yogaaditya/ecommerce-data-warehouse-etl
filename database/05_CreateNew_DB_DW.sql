@@ -1,0 +1,17 @@
+USE master;
+GO
+
+IF DB_ID(N'ECommerceDW') IS NULL
+BEGIN
+ CREATE DATABASE ECommerceDW;
+END;
+GO
+
+USE ECommerceDW;
+GO
+
+IF SCHEMA_ID(N'dw') IS NULL
+BEGIN
+ EXEC(N'CREATE SCHEMA dw');
+END;
+GO

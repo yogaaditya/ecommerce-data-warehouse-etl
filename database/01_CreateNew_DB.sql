@@ -1,0 +1,14 @@
+IF DB_ID(N'ECommerceStaging') IS NULL
+BEGIN
+ CREATE DATABASE ECommerceStaging;
+END;
+GO
+
+USE ECommerceStaging;
+GO
+
+IF SCHEMA_ID(N'stg') IS NULL
+BEGIN
+ EXEC(N'CREATE SCHEMA stg');
+END;
+GO

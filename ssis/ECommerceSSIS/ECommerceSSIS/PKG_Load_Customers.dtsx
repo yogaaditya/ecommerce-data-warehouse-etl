@@ -1,0 +1,1060 @@
+﻿<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="10/29/2026 7:21:59 PM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="DESKTOP-D9BVEU4"
+  DTS:CreatorName="DESKTOP-D9BVEU4\Asus"
+  DTS:Description="Load customer record from CSV into the SSIS demo staging table."
+  DTS:DTSID="{49D12B43-FC19-4BBC-AB0C-26900DAA7DCF}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="17.0.1016.0"
+  DTS:LocaleID="14345"
+  DTS:ObjectName="PKG_Load_Customers"
+  DTS:PackageType="5"
+  DTS:VersionBuild="15"
+  DTS:VersionGUID="{BC4AF9E0-85D8-4AF0-95D9-47D29340C478}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[FF_Customers]"
+      DTS:CreationName="FLATFILE"
+      DTS:DTSID="{C4A083A3-0BCB-47CE-B884-47CFFFEBD51B}"
+      DTS:ObjectName="FF_Customers">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:Format="Delimited"
+          DTS:LocaleID="14345"
+          DTS:HeaderRowDelimiter="_x000D__x000A_"
+          DTS:ColumnNamesInFirstDataRow="True"
+          DTS:RowDelimiter=""
+          DTS:TextQualifier="_x0022_"
+          DTS:CodePage="65001"
+          DTS:ConnectionString="C:\Projects\ecommerce-data-warehouse-etl\data\raw\customers.csv">
+          <DTS:FlatFileColumns>
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="customer_id"
+              DTS:DTSID="{74D9F83A-85A0-4C4F-AF94-B2BACD7FEA14}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="customer_name"
+              DTS:DTSID="{CBE3AD95-B347-455A-9EAE-7F48907E4416}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="email"
+              DTS:DTSID="{7CBD1833-3935-4A9C-8992-BF094E3B5341}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="city"
+              DTS:DTSID="{F687680E-2A8D-4345-B1F8-E52F92EF27FE}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x000D__x000A_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="signup_date"
+              DTS:DTSID="{1619C7FB-B54A-4D6A-ABA1-B342E53CC432}"
+              DTS:CreationName="" />
+          </DTS:FlatFileColumns>
+        </DTS:ConnectionManager>
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[OLEDB_EcommerceStaging]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{76DF8837-05AF-4522-94EF-D456001DC2B3}"
+      DTS:ObjectName="OLEDB_EcommerceStaging">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectRetryCount="1"
+          DTS:ConnectRetryInterval="5"
+          DTS:ConnectionString="Data Source=localhost;Initial Catalog=ECommerceStaging;Provider=MSOLEDBSQL.1;Integrated Security=SSPI;Auto Translate=False;Application Name=SSIS-PKG_Load_Customers-{76DF8837-05AF-4522-94EF-D456001DC2B3}localhost.ECommerceStaging;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Variables />
+  <DTS:LoggingOptions
+    DTS:FilterKind="0"
+    DTS:LoggingMode="2" />
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\DFT_Load_Customers"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{C2160A91-455F-4CAC-BB82-EC9DB3168CED}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="DFT_Load_Customers"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:LoggingOptions
+        DTS:FilterKind="0"
+        DTS:LoggingMode="1">
+        <DTS:Property
+          DTS:DataType="8"
+          DTS:Name="EventFilter">5,7,OnError,13,OnPostExecute,12,OnPreExecute,12,OnTaskFailed,9,OnWarning</DTS:Property>
+        <DTS:Property
+          DTS:EventName="OnError"
+          DTS:Name="ColumnFilter">
+          <DTS:Property
+            DTS:Name="Computer">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="Operator">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="SourceName">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="SourceID">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="ExecutionID">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="MessageText">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="DataBytes">-1</DTS:Property>
+        </DTS:Property>
+        <DTS:Property
+          DTS:EventName="OnPostExecute"
+          DTS:Name="ColumnFilter">
+          <DTS:Property
+            DTS:Name="Computer">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="Operator">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="SourceName">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="SourceID">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="ExecutionID">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="MessageText">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="DataBytes">-1</DTS:Property>
+        </DTS:Property>
+        <DTS:Property
+          DTS:EventName="OnPreExecute"
+          DTS:Name="ColumnFilter">
+          <DTS:Property
+            DTS:Name="Computer">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="Operator">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="SourceName">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="SourceID">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="ExecutionID">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="MessageText">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="DataBytes">-1</DTS:Property>
+        </DTS:Property>
+        <DTS:Property
+          DTS:EventName="OnTaskFailed"
+          DTS:Name="ColumnFilter">
+          <DTS:Property
+            DTS:Name="Computer">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="Operator">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="SourceName">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="SourceID">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="ExecutionID">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="MessageText">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="DataBytes">-1</DTS:Property>
+        </DTS:Property>
+        <DTS:Property
+          DTS:EventName="OnWarning"
+          DTS:Name="ColumnFilter">
+          <DTS:Property
+            DTS:Name="Computer">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="Operator">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="SourceName">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="SourceID">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="ExecutionID">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="MessageText">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="DataBytes">-1</DTS:Property>
+        </DTS:Property>
+      </DTS:LoggingOptions>
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\DFT_Load_Customers\Data Conversion"
+              componentClassID="Microsoft.DataConvert"
+              contactInfo="Data Conversion;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Data Conversion"
+              name="Data Conversion"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\DFT_Load_Customers\Data Conversion.Inputs[Data Conversion Input]"
+                  name="Data Conversion Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\DFT_Load_Customers\Data Conversion.Inputs[Data Conversion Input].Columns[customer_id]"
+                      cachedCodepage="65001"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="customer_id"
+                      lineageId="Package\DFT_Load_Customers\SRC_Customers_CSV.Outputs[Flat File Source Output].Columns[customer_id]" />
+                    <inputColumn
+                      refId="Package\DFT_Load_Customers\Data Conversion.Inputs[Data Conversion Input].Columns[customer_name]"
+                      cachedCodepage="65001"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="customer_name"
+                      lineageId="Package\DFT_Load_Customers\SRC_Customers_CSV.Outputs[Flat File Source Output].Columns[customer_name]" />
+                    <inputColumn
+                      refId="Package\DFT_Load_Customers\Data Conversion.Inputs[Data Conversion Input].Columns[email]"
+                      cachedCodepage="65001"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="email"
+                      lineageId="Package\DFT_Load_Customers\SRC_Customers_CSV.Outputs[Flat File Source Output].Columns[email]" />
+                    <inputColumn
+                      refId="Package\DFT_Load_Customers\Data Conversion.Inputs[Data Conversion Input].Columns[city]"
+                      cachedCodepage="65001"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="city"
+                      lineageId="Package\DFT_Load_Customers\SRC_Customers_CSV.Outputs[Flat File Source Output].Columns[city]" />
+                    <inputColumn
+                      refId="Package\DFT_Load_Customers\Data Conversion.Inputs[Data Conversion Input].Columns[signup_date]"
+                      cachedCodepage="65001"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="signup_date"
+                      lineageId="Package\DFT_Load_Customers\SRC_Customers_CSV.Outputs[Flat File Source Output].Columns[signup_date]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\DFT_Load_Customers\Data Conversion.Outputs[Data Conversion Output]"
+                  exclusionGroup="1"
+                  name="Data Conversion Output"
+                  synchronousInputId="Package\DFT_Load_Customers\Data Conversion.Inputs[Data Conversion Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DFT_Load_Customers\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of customer_id]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      length="50"
+                      lineageId="Package\DFT_Load_Customers\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of customer_id]"
+                      name="Copy of customer_id"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\DFT_Load_Customers\SRC_Customers_CSV.Outputs[Flat File Source Output].Columns[customer_id]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\DFT_Load_Customers\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of customer_name]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      length="50"
+                      lineageId="Package\DFT_Load_Customers\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of customer_name]"
+                      name="Copy of customer_name"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\DFT_Load_Customers\SRC_Customers_CSV.Outputs[Flat File Source Output].Columns[customer_name]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\DFT_Load_Customers\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of email]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      length="50"
+                      lineageId="Package\DFT_Load_Customers\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of email]"
+                      name="Copy of email"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\DFT_Load_Customers\SRC_Customers_CSV.Outputs[Flat File Source Output].Columns[email]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\DFT_Load_Customers\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of city]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      length="50"
+                      lineageId="Package\DFT_Load_Customers\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of city]"
+                      name="Copy of city"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\DFT_Load_Customers\SRC_Customers_CSV.Outputs[Flat File Source Output].Columns[city]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\DFT_Load_Customers\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of signup_date]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      length="50"
+                      lineageId="Package\DFT_Load_Customers\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of signup_date]"
+                      name="Copy of signup_date"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\DFT_Load_Customers\SRC_Customers_CSV.Outputs[Flat File Source Output].Columns[signup_date]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\DFT_Load_Customers\Data Conversion.Outputs[Data Conversion Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Data Conversion Error Output"
+                  synchronousInputId="Package\DFT_Load_Customers\Data Conversion.Inputs[Data Conversion Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DFT_Load_Customers\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\DFT_Load_Customers\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\DFT_Load_Customers\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\DFT_Load_Customers\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\DFT_Load_Customers\DST_SSIS_CustomersDemo"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="DST_SSIS_CustomersDemo"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[stg].[SSIS_CustomersDemo]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\DFT_Load_Customers\DST_SSIS_CustomersDemo.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[OLEDB_EcommerceStaging]"
+                  connectionManagerRefId="Package.ConnectionManagers[OLEDB_EcommerceStaging]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\DFT_Load_Customers\DST_SSIS_CustomersDemo.Inputs[OLE DB Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\DFT_Load_Customers\DST_SSIS_CustomersDemo.Inputs[OLE DB Destination Input].Columns[Copy of email]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="Copy of email"
+                      externalMetadataColumnId="Package\DFT_Load_Customers\DST_SSIS_CustomersDemo.Inputs[OLE DB Destination Input].ExternalColumns[Email]"
+                      lineageId="Package\DFT_Load_Customers\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of email]" />
+                    <inputColumn
+                      refId="Package\DFT_Load_Customers\DST_SSIS_CustomersDemo.Inputs[OLE DB Destination Input].Columns[Copy of city]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="Copy of city"
+                      externalMetadataColumnId="Package\DFT_Load_Customers\DST_SSIS_CustomersDemo.Inputs[OLE DB Destination Input].ExternalColumns[City]"
+                      lineageId="Package\DFT_Load_Customers\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of city]" />
+                    <inputColumn
+                      refId="Package\DFT_Load_Customers\DST_SSIS_CustomersDemo.Inputs[OLE DB Destination Input].Columns[Copy of customer_id]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="Copy of customer_id"
+                      externalMetadataColumnId="Package\DFT_Load_Customers\DST_SSIS_CustomersDemo.Inputs[OLE DB Destination Input].ExternalColumns[Customer_ID]"
+                      lineageId="Package\DFT_Load_Customers\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of customer_id]" />
+                    <inputColumn
+                      refId="Package\DFT_Load_Customers\DST_SSIS_CustomersDemo.Inputs[OLE DB Destination Input].Columns[Copy of customer_name]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="Copy of customer_name"
+                      externalMetadataColumnId="Package\DFT_Load_Customers\DST_SSIS_CustomersDemo.Inputs[OLE DB Destination Input].ExternalColumns[Customers_Name]"
+                      lineageId="Package\DFT_Load_Customers\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of customer_name]" />
+                    <inputColumn
+                      refId="Package\DFT_Load_Customers\DST_SSIS_CustomersDemo.Inputs[OLE DB Destination Input].Columns[Copy of signup_date]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="Copy of signup_date"
+                      externalMetadataColumnId="Package\DFT_Load_Customers\DST_SSIS_CustomersDemo.Inputs[OLE DB Destination Input].ExternalColumns[Signup_Date]"
+                      lineageId="Package\DFT_Load_Customers\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of signup_date]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\DFT_Load_Customers\DST_SSIS_CustomersDemo.Inputs[OLE DB Destination Input].ExternalColumns[Email]"
+                      dataType="wstr"
+                      length="255"
+                      name="Email" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_Load_Customers\DST_SSIS_CustomersDemo.Inputs[OLE DB Destination Input].ExternalColumns[City]"
+                      dataType="wstr"
+                      length="100"
+                      name="City" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_Load_Customers\DST_SSIS_CustomersDemo.Inputs[OLE DB Destination Input].ExternalColumns[Customer_ID]"
+                      dataType="wstr"
+                      length="50"
+                      name="Customer_ID" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_Load_Customers\DST_SSIS_CustomersDemo.Inputs[OLE DB Destination Input].ExternalColumns[Customers_Name]"
+                      dataType="wstr"
+                      length="100"
+                      name="Customers_Name" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_Load_Customers\DST_SSIS_CustomersDemo.Inputs[OLE DB Destination Input].ExternalColumns[Signup_Date]"
+                      dataType="wstr"
+                      length="100"
+                      name="Signup_Date" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\DFT_Load_Customers\DST_SSIS_CustomersDemo.Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\DFT_Load_Customers\DST_SSIS_CustomersDemo.Inputs[OLE DB Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DFT_Load_Customers\DST_SSIS_CustomersDemo.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\DFT_Load_Customers\DST_SSIS_CustomersDemo.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\DFT_Load_Customers\DST_SSIS_CustomersDemo.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\DFT_Load_Customers\DST_SSIS_CustomersDemo.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\DFT_Load_Customers\SRC_Customers_CSV"
+              componentClassID="Microsoft.FlatFileSource"
+              contactInfo="Flat File Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;1"
+              description="Flat File Source"
+              localeId="14345"
+              name="SRC_Customers_CSV"
+              usesDispositions="true"
+              version="1">
+              <properties>
+                <property
+                  dataType="System.Boolean"
+                  description="Specifies whether zero-length columns are treated as null."
+                  name="RetainNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of an output column containing the file name. If no name is specified, no output column containing the file name will be generated."
+                  name="FileNameColumnName"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\DFT_Load_Customers\SRC_Customers_CSV.Connections[FlatFileConnection]"
+                  connectionManagerID="Package.ConnectionManagers[FF_Customers]"
+                  connectionManagerRefId="Package.ConnectionManagers[FF_Customers]"
+                  name="FlatFileConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\DFT_Load_Customers\SRC_Customers_CSV.Outputs[Flat File Source Output]"
+                  name="Flat File Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DFT_Load_Customers\SRC_Customers_CSV.Outputs[Flat File Source Output].Columns[customer_id]"
+                      codePage="65001"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT_Load_Customers\SRC_Customers_CSV.Outputs[Flat File Source Output].ExternalColumns[customer_id]"
+                      length="50"
+                      lineageId="Package\DFT_Load_Customers\SRC_Customers_CSV.Outputs[Flat File Source Output].Columns[customer_id]"
+                      name="customer_id"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\DFT_Load_Customers\SRC_Customers_CSV.Outputs[Flat File Source Output].Columns[customer_name]"
+                      codePage="65001"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT_Load_Customers\SRC_Customers_CSV.Outputs[Flat File Source Output].ExternalColumns[customer_name]"
+                      length="50"
+                      lineageId="Package\DFT_Load_Customers\SRC_Customers_CSV.Outputs[Flat File Source Output].Columns[customer_name]"
+                      name="customer_name"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\DFT_Load_Customers\SRC_Customers_CSV.Outputs[Flat File Source Output].Columns[email]"
+                      codePage="65001"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT_Load_Customers\SRC_Customers_CSV.Outputs[Flat File Source Output].ExternalColumns[email]"
+                      length="50"
+                      lineageId="Package\DFT_Load_Customers\SRC_Customers_CSV.Outputs[Flat File Source Output].Columns[email]"
+                      name="email"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\DFT_Load_Customers\SRC_Customers_CSV.Outputs[Flat File Source Output].Columns[city]"
+                      codePage="65001"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT_Load_Customers\SRC_Customers_CSV.Outputs[Flat File Source Output].ExternalColumns[city]"
+                      length="50"
+                      lineageId="Package\DFT_Load_Customers\SRC_Customers_CSV.Outputs[Flat File Source Output].Columns[city]"
+                      name="city"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\DFT_Load_Customers\SRC_Customers_CSV.Outputs[Flat File Source Output].Columns[signup_date]"
+                      codePage="65001"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT_Load_Customers\SRC_Customers_CSV.Outputs[Flat File Source Output].ExternalColumns[signup_date]"
+                      length="50"
+                      lineageId="Package\DFT_Load_Customers\SRC_Customers_CSV.Outputs[Flat File Source Output].Columns[signup_date]"
+                      name="signup_date"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\DFT_Load_Customers\SRC_Customers_CSV.Outputs[Flat File Source Output].ExternalColumns[customer_id]"
+                      codePage="65001"
+                      dataType="str"
+                      length="50"
+                      name="customer_id" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_Load_Customers\SRC_Customers_CSV.Outputs[Flat File Source Output].ExternalColumns[customer_name]"
+                      codePage="65001"
+                      dataType="str"
+                      length="50"
+                      name="customer_name" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_Load_Customers\SRC_Customers_CSV.Outputs[Flat File Source Output].ExternalColumns[email]"
+                      codePage="65001"
+                      dataType="str"
+                      length="50"
+                      name="email" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_Load_Customers\SRC_Customers_CSV.Outputs[Flat File Source Output].ExternalColumns[city]"
+                      codePage="65001"
+                      dataType="str"
+                      length="50"
+                      name="city" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_Load_Customers\SRC_Customers_CSV.Outputs[Flat File Source Output].ExternalColumns[signup_date]"
+                      codePage="65001"
+                      dataType="str"
+                      length="50"
+                      name="signup_date" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\DFT_Load_Customers\SRC_Customers_CSV.Outputs[Flat File Source Error Output]"
+                  isErrorOut="true"
+                  name="Flat File Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DFT_Load_Customers\SRC_Customers_CSV.Outputs[Flat File Source Error Output].Columns[Flat File Source Error Output Column]"
+                      codePage="65001"
+                      dataType="text"
+                      description="Flat File Source Error Output Column"
+                      lineageId="Package\DFT_Load_Customers\SRC_Customers_CSV.Outputs[Flat File Source Error Output].Columns[Flat File Source Error Output Column]"
+                      name="Flat File Source Error Output Column" />
+                    <outputColumn
+                      refId="Package\DFT_Load_Customers\SRC_Customers_CSV.Outputs[Flat File Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\DFT_Load_Customers\SRC_Customers_CSV.Outputs[Flat File Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\DFT_Load_Customers\SRC_Customers_CSV.Outputs[Flat File Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\DFT_Load_Customers\SRC_Customers_CSV.Outputs[Flat File Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\DFT_Load_Customers.Paths[Data Conversion Output]"
+              endId="Package\DFT_Load_Customers\DST_SSIS_CustomersDemo.Inputs[OLE DB Destination Input]"
+              name="Data Conversion Output"
+              startId="Package\DFT_Load_Customers\Data Conversion.Outputs[Data Conversion Output]" />
+            <path
+              refId="Package\DFT_Load_Customers.Paths[Flat File Source Output]"
+              endId="Package\DFT_Load_Customers\Data Conversion.Inputs[Data Conversion Input]"
+              name="Flat File Source Output"
+              startId="Package\DFT_Load_Customers\SRC_Customers_CSV.Outputs[Flat File Source Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\SQL_Clear_CustomersDemo"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{C7C6C7E0-17AD-4DE7-AE7B-141F4CF88C88}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="SQL_Clear_CustomersDemo"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2025; © 2025 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:LoggingOptions
+        DTS:FilterKind="0"
+        DTS:LoggingMode="1">
+        <DTS:Property
+          DTS:DataType="8"
+          DTS:Name="EventFilter">5,7,OnError,13,OnPostExecute,12,OnPreExecute,12,OnTaskFailed,9,OnWarning</DTS:Property>
+        <DTS:Property
+          DTS:EventName="OnError"
+          DTS:Name="ColumnFilter">
+          <DTS:Property
+            DTS:Name="Computer">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="Operator">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="SourceName">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="SourceID">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="ExecutionID">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="MessageText">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="DataBytes">-1</DTS:Property>
+        </DTS:Property>
+        <DTS:Property
+          DTS:EventName="OnPostExecute"
+          DTS:Name="ColumnFilter">
+          <DTS:Property
+            DTS:Name="Computer">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="Operator">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="SourceName">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="SourceID">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="ExecutionID">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="MessageText">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="DataBytes">-1</DTS:Property>
+        </DTS:Property>
+        <DTS:Property
+          DTS:EventName="OnPreExecute"
+          DTS:Name="ColumnFilter">
+          <DTS:Property
+            DTS:Name="Computer">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="Operator">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="SourceName">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="SourceID">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="ExecutionID">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="MessageText">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="DataBytes">-1</DTS:Property>
+        </DTS:Property>
+        <DTS:Property
+          DTS:EventName="OnTaskFailed"
+          DTS:Name="ColumnFilter">
+          <DTS:Property
+            DTS:Name="Computer">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="Operator">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="SourceName">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="SourceID">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="ExecutionID">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="MessageText">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="DataBytes">-1</DTS:Property>
+        </DTS:Property>
+        <DTS:Property
+          DTS:EventName="OnWarning"
+          DTS:Name="ColumnFilter">
+          <DTS:Property
+            DTS:Name="Computer">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="Operator">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="SourceName">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="SourceID">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="ExecutionID">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="MessageText">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="DataBytes">-1</DTS:Property>
+        </DTS:Property>
+      </DTS:LoggingOptions>
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{76DF8837-05AF-4522-94EF-D456001DC2B3}"
+          SQLTask:SqlStatementSource="DELETE FROM stg.SSIS_CustomersDemo" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint]"
+      DTS:CreationName=""
+      DTS:DTSID="{E01446D4-48B6-4BEC-9D78-60AFA1D0FEA5}"
+      DTS:From="Package\SQL_Clear_CustomersDemo"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint"
+      DTS:To="Package\DFT_Load_Customers" />
+  </DTS:PrecedenceConstraints>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="8">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="183.2,41.6"
+          Id="Package\DFT_Load_Customers"
+          TopLeft="52.4999971315266,128.266665774716" />
+        <NodeLayout
+          Size="213.6,41.6"
+          Id="Package\SQL_Clear_CustomersDemo"
+          TopLeft="42.4999976779025,53.7333329596784" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint]"
+          TopLeft="146.699997404715,95.3333329596784">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,32.9333328150378"
+              Start="0,0"
+              End="0,25.4333328150378">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,25.4333328150378" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\DFT_Load_Customers">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="183.2,41.6"
+          Id="Package\DFT_Load_Customers\SRC_Customers_CSV"
+          TopLeft="35.8333313754865,55.4666662809584" />
+        <NodeLayout
+          Size="212,41.6"
+          Id="Package\DFT_Load_Customers\DST_SSIS_CustomersDemo"
+          TopLeft="22.4999987706543,206.266665232314" />
+        <NodeLayout
+          Size="156,41.6"
+          Id="Package\DFT_Load_Customers\Data Conversion"
+          TopLeft="241.666653462583,126.533332453436" />
+        <EdgeLayout
+          Id="Package\DFT_Load_Customers.Paths[Flat File Source Output]"
+          TopLeft="127.433331375486,97.0666662809584">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="192.233322087096,29.466666172478"
+              Start="0,0"
+              End="192.233322087096,21.966666172478">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,10.733333086239" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,10.733333086239"
+                    Point2="0,14.733333086239"
+                    Point3="4,14.733333086239" />
+                  <mssgle:LineSegment
+                    End="188.233322087096,14.733333086239" />
+                  <mssgle:CubicBezierSegment
+                    Point1="188.233322087096,14.733333086239"
+                    Point2="192.233322087096,14.733333086239"
+                    Point3="192.233322087096,18.733333086239" />
+                  <mssgle:LineSegment
+                    End="192.233322087096,21.966666172478" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\DFT_Load_Customers.Paths[Data Conversion Output]"
+          TopLeft="319.666653462583,168.133332453436">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-191.166654691928,38.1333327788777"
+              Start="0,0"
+              End="-191.166654691928,30.6333327788777">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,15.0666663894388" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,15.0666663894388"
+                    Point2="0,19.0666663894388"
+                    Point3="-4,19.0666663894388" />
+                  <mssgle:LineSegment
+                    End="-187.166654691928,19.0666663894388" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-187.166654691928,19.0666663894388"
+                    Point2="-191.166654691928,19.0666663894388"
+                    Point3="-191.166654691928,23.0666663894388" />
+                  <mssgle:LineSegment
+                    End="-191.166654691928,30.6333327788777" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\DFT_Load_Customers\DST_SSIS_CustomersDemo">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>
