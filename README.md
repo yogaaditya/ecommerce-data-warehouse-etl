@@ -58,7 +58,7 @@ screenshots/Project execution and dashboard screenshots
 
 How to Run
 1. Clone the repository
-git clone <YOUR_GITHUB_REPOSITORY_URL>
+git clone (https://github.com/yogaaditya/ecommerce-data-warehouse-etl.git)
 cd ecommerce-data-warehouse-etl
 2. Create a Python environment
 python -m venv .venv
