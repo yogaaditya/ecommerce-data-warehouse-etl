@@ -4,6 +4,7 @@ __pycache__/
 .pytest_cache/
 .env
 .env.*
+*.local
 !.env.example
 *.log
 logs/*
@@ -13,7 +14,9 @@ data/raw/*
 !data/raw/.gitkeep
 data/processed/*
 data/rejected/*
-*.pbix
 .vscode/
+.vs/
+bin/
+obj/
 *.tmp
 *.bak
