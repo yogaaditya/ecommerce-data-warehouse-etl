@@ -1,22 +1,23 @@
-E-Commerce Data Warehouse & ETL Automation Platform
-Project Overview
+**E-Commerce Data Warehouse & ETL Automation Platform**
+
+**Project Overview**
 An end-to-end data engineering portfolio project that processes e-commerce transactional data through an automated ETL pipeline and loads it into a SQL Server data warehouse for analytical reporting.
 
-Objectives
+**Objectives**
 Build a structured ETL pipeline using Python and SQL Server.
 Implement data quality validation and error handling.
 Design a Star Schema data warehouse.
 Automate data loading and maintain execution logs.
 Demonstrate SQL Server Integration Services (SSIS) data integration.
 
-Tech Stack
+**Tech Stack**
 Database: Microsoft SQL Server 2025, T-SQL
 ETL: Python, Pandas, PyODBC, SSIS
 Testing: Pytest
 Version Control: Git, GitHub
 Data Source: CSV files
 
-Architecture
+**Architecture**
 CSV Source Files
 ↓
 Python ETL Pipeline
@@ -29,7 +30,7 @@ Star Schema Data Warehouse
 
 SSIS is also used to demonstrate CSV-to-SQL Server data integration.
 
-Data Warehouse Design
+**Data Warehouse Design**
 The warehouse uses a Star Schema consisting of:
 
 dw.DimCustomer
@@ -38,7 +39,7 @@ dw.DimDate
 dw.FactSales
 The fact table contains sales transactions and references the dimension tables through surrogate keys.
 
-ETL Features
+**ETL Features**
 Source file validation
 Data profiling and quality checks
 Duplicate record detection
@@ -53,10 +54,9 @@ database/   SQL scripts and database documentation
 python/     Python ETL scripts and utilities
 ssis/       SSIS packages and solution
 tests/      Unit tests
-docs/       Project documentation
-screenshots/Project execution and dashboard screenshots
+screenshots/Project execution
 
-How to Run
+**How to Run**
 1. Clone the repository
 git clone (https://github.com/yogaaditya/ecommerce-data-warehouse-etl.git)
 cd ecommerce-data-warehouse-etl
@@ -76,14 +76,14 @@ Ensure the required staging and warehouse databases have been created.
 Data Quality
 The sample dataset intentionally contains data quality issues, including:
 
-Duplicate order records
+**Duplicate order records**
 Missing customer email values
 Invalid quantities
 Unknown product references
 Duplicate order items
 The pipeline identifies and handles these issues according to the implemented ETL rules.
 
-Project Status
+**Project Status**
 Python ETL pipeline, SQL Server staging, Star Schema warehouse, unit tests, and initial SSIS data integration packages have been implemented and tested.
 
 Additional integrations and analytics components may be extended in future iterations.
